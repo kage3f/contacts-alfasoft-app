@@ -211,7 +211,8 @@ document.addEventListener('DOMContentLoaded', function () {
         padding: 10px 20px;
         border-radius: 10px;
         font-weight: 600;
-        height: 40px;
+        height: 20px;
+        max-height: 40px;
     }
 
     .alert-success {
