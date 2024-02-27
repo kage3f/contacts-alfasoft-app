@@ -28,7 +28,8 @@
                         <tr>
                             <th>ID</th>
                             <th>Contact Name</th>
-                            <th>Contact Email</th>
+                            <th>Contact</th>
+                            <th>Contact</th>
                             <th>Created At</th>
                             <th>Actions</th>
                         </tr>
@@ -38,6 +39,7 @@
         <tr>
             <td>{{ $contact->id }}</td>
             <td>{{ $contact->name }}</td>
+            <td>{{ $contact->contact }}</td>
             <td>{{ $contact->email }}</td>
             <td>{{ $contact->created_at->format('Y-m-d H:i:s') }}</td>
             <td class="action-buttons">
@@ -67,8 +69,9 @@
         <div class="card">
             <div class="card-content">
                 <p><strong>ID:</strong> {{ $contact->id }}</p>
-                <p><strong>Contact Name:</strong> {{ $contact->name }}</p>
-                <p><strong>Contact Email:</strong> {{ $contact->email }}</p>
+                <p><strong>Name:</strong> {{ $contact->name }}</p>
+                <p><strong>Contact:</strong> {{ $contact->contact }}</p>
+                <p><strong>Email:</strong> {{ $contact->email }}</p>
                 <p><strong>Created At:</strong> {{ $contact->created_at->format('Y-m-d H:i:s') }}</p>
                 <div class="action-buttons" style="margin-top: 10px; justify-content: flex-end !important;">
                     <a href="{{ route('contacts.show', $contact->id) }}" class="btn-view"><img src="{{ asset('imgs/view.png') }}"></a>
