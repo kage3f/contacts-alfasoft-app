@@ -51,6 +51,7 @@
 .sidebar {
     width: 250px;
     position: fixed;
+    left: 0;
     z-index: 99;
     height: 100vh;
     overflow-y: auto;
