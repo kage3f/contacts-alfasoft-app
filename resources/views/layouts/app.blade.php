@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densityDpi=device-dpi" />
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link href="{{ asset('css/normalize.css') }}" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
@@ -122,6 +121,14 @@
         color: #0081AF;
         margin-top: 10px;
     }
+
+    a {
+    text-decoration: none;
+}
+
+*, body, h1, h2, h3 {
+    font-family: "Raleway", sans-serif;
+}
 </style>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
