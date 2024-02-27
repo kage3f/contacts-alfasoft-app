@@ -1,3 +1,5 @@
+![Gerenciamento de Contatos](https://i.imgur.com/aAe9smc.png)
+
 # Gerenciamento de Contatos
 
 Este projeto utiliza o Laravel para gerenciar contatos, permitindo a realização de operações CRUD (Criar, Ler, Atualizar, Deletar), com autenticação para acessar determinadas funcionalidades.
