@@ -1,66 +1,56 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+Gerenciamento de Contatos
+Este projeto utiliza o Laravel para gerenciar contatos, permitindo a realização de operações CRUD (Criar, Ler, Atualizar, Deletar), com autenticação para acessar determinadas funcionalidades.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Rotas
+Listar Contatos (GET /contacts): Exibe todos os contatos. Suporta pesquisa por nome e e-mail.
+Criar Contato (GET /contacts/create e POST /contacts): Formulário para criação e armazenamento de um novo contato.
+Visualizar Contato (GET /contacts/{contact}): Detalhes de um contato específico.
+Editar Contato (GET /contacts/{contact}/edit e PUT /contacts/{contact}): Formulário para edição e atualização dos dados de um contato.
+Deletar Contato (DELETE /contacts/{contact}): Remove um contato específico.
+Lógica do Controller
+O ContactController gerencia as operações relacionadas aos contatos. Aqui estão alguns destaques da sua implementação:
 
-## About Laravel
+index(): Lista os contatos, com suporte à pesquisa. A pesquisa pode filtrar por nome ou e-mail.
+create() e store(): Exibe o formulário para adição de um novo contato e processa a criação deste contato, respectivamente. Validações são aplicadas para garantir dados corretos.
+show(): Mostra os detalhes de um contato específico.
+edit() e update(): Gerenciam a edição de um contato. edit() exibe o formulário preenchido com os dados existentes do contato, e update() processa as alterações.
+destroy(): Remove um contato do banco de dados.
+Validações
+Nome: obrigatório e com mínimo de 6 caracteres.
+Contato (telefone): obrigatório, deve ter 9 dígitos e ser único no sistema.
+E-mail: obrigatório, deve ser um formato de e-mail válido e único no sistema.
+Feedback ao Usuário
+Após operações de criação, atualização e exclusão, mensagens de sucesso são exibidas para informar o usuário sobre o resultado da operação.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Pré-requisitos
+Antes de iniciar, certifique-se de que você tem o seguinte instalado em sua máquina:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+PHP (versão compatível com o projeto)
+Composer (Gerenciador de dependências para PHP)
+Servidor de banco de dados (MySQL, PostgreSQL, etc.)
+Git (opcional, para clonar o repositório)
+Passos para Configuração
+Clonar o Projeto (se aplicável)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+git clone https://github.com/kage3f/contacts-alfasoft-app
+Entre na pasta do projeto: cd nome-da-pasta
+Instalar Dependências
 
-## Learning Laravel
+Execute composer install para instalar as dependências do PHP necessárias para o projeto.
+Configurar Ambiente
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Copie o arquivo .env.example para .env na raiz do projeto: cp .env.example .env
+Abra o arquivo .env e configure as variáveis de ambiente necessárias (por exemplo, detalhes do banco de dados).
+Gerar Chave da Aplicação
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Execute php artisan key:generate para gerar uma chave de aplicação única.
+Migrações e Seeders
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+Execute php artisan migrate para criar as tabelas no banco de dados.
+Se o projeto tiver seeders, execute php artisan db:seed para popular o banco de dados com dados iniciais.
+Rodar o Servidor de Desenvolvimento
 
-## Laravel Sponsors
+Execute php artisan serve para iniciar o servidor de desenvolvimento. Por padrão, o Laravel inicia o servidor em http://localhost:8000.
+Acessar o Projeto
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
-
-### Premium Partners
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Abra o navegador e acesse http://localhost:8000 para visualizar o projeto.
