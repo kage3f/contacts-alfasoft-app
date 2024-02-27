@@ -27,9 +27,9 @@
                     <thead class="table-header">
                         <tr>
                             <th>ID</th>
-                            <th>Contact Name</th>
+                            <th>Name</th>
                             <th>Contact</th>
-                            <th>Contact</th>
+                            <th>E-mail</th>
                             <th>Created At</th>
                             <th>Actions</th>
                         </tr>
