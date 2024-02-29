@@ -45,7 +45,7 @@
             <td class="action-buttons">
                 <a href="{{ route('contacts.show', $contact->id) }}" class="btn-view"><img src="{{ asset('imgs/view.png') }}"></a>
                 <a href="{{ route('contacts.edit', $contact->id) }}" class="btn-edit"><img src="{{ asset('imgs/edit.png') }}"></a>
-                <form id="deleteForm" action="{{ route('contacts.destroy', $contact->id) }}" method="POST">
+                <form class="deleteForm" action="{{ route('contacts.destroy', $contact->id) }}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button type="submit"><img src="{{ asset('imgs/delete.png') }}"></button>
@@ -54,16 +54,16 @@
         </tr>
     @empty
         @if(request()->has('search') && request('search') != '')
-            <tr><td colspan="5" class="text-center">Nenhum resultado encontrado para "{{ request('search') }}"</td></tr>
+            <tr><td colspan="6" class="text-center">Nenhum resultado encontrado para "{{ request('search') }}"</td></tr>
         @else
-            <tr><td colspan="5" class="text-center">Nenhum contato cadastrado</td></tr>
+            <tr><td colspan="6" class="text-center">Nenhum contato cadastrado</td></tr>
         @endif
     @endforelse
 </tbody>
 
-                </table>
+</table>
 </div>
-                <!-- Cards que serão exibidos apenas em dispositivos móveis -->
+               
 <div class="cards-container mobile-only">
     @forelse ($contacts as $contact)
         <div class="card">
@@ -76,7 +76,7 @@
                 <div class="action-buttons" style="margin-top: 10px; justify-content: flex-end !important;">
                     <a href="{{ route('contacts.show', $contact->id) }}" class="btn-view"><img src="{{ asset('imgs/view.png') }}"></a>
                     <a href="{{ route('contacts.edit', $contact->id) }}" class="btn-edit"><img src="{{ asset('imgs/edit.png') }}"></a>
-                    <form id="deleteForm" action="{{ route('contacts.destroy', $contact->id) }}" method="POST">
+                    <form class="deleteForm" action="{{ route('contacts.destroy', $contact->id) }}" method="POST">
                         @csrf
                         @method('DELETE')
                         <button type="submit"><img src="{{ asset('imgs/delete.png') }}"></button>
@@ -85,7 +85,6 @@
             </div>
         </div>
     @empty
-        <!-- Seu código para quando não houver contatos -->
     @endforelse
 </div>
                 <div class="paginate-container">{{ $contacts->links('pagination::default') }}</div>
@@ -95,25 +94,25 @@
     </div>
 
 @endsection
+
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const deleteForm = document.getElementById('deleteForm');
+    const deleteForms = document.querySelectorAll('.deleteForm'); 
 
-    deleteForm.addEventListener('submit', function (event) {
-        event.preventDefault(); // Impede o envio do formulário imediatamente
+    deleteForms.forEach(function(form) {
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
 
-        // Mostra um diálogo de confirmação
-        const confirmed = confirm('Tem certeza de que deseja deletar este contato?');
-
-        // Se o usuário confirmar, envia o formulário
-        if (confirmed) {
-            this.submit(); // 'this' refere-se ao formulário
-        }
-        // Se o usuário não confirmar, nada acontece e o formulário não é enviado
+            const confirmed = confirm('Tem certeza de que deseja deletar este contato?');
+            if (confirmed) {
+                form.submit();
+            }
+        });
     });
 });
-</script>
 
+
+</script>
 
 <style>
     .container .row{
