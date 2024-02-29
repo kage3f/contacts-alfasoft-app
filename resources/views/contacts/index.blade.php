@@ -17,6 +17,18 @@
                 @endif
 
                 <div class="container-search">
+                <div class="sort-options">
+                    <a href="{{ route('contacts.index', ['order_by' => 'created_at', 'sort' => 'desc']) }}"
+                    class="{{ request('order_by', 'created_at') == 'created_at' && request('sort', 'desc') == 'desc' ? 'sort-option-active' : '' }}">
+                        Mais Recentes
+                    </a>
+                    <a href="{{ route('contacts.index', ['order_by' => 'created_at', 'sort' => 'asc']) }}"
+                    class="{{ request('order_by') == 'created_at' && request('sort') == 'asc' ? 'sort-option-active' : '' }}">
+                        Mais Antigos
+                    </a>
+                </div>
+
+
                 <form action="{{ route('contacts.index') }}" method="GET">
                     <input type="text" name="search" placeholder="Search contacts...">
                     <button type="submit">Search</button>
@@ -239,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     .container-search {
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         margin-bottom: 20px;
     }
 
@@ -289,6 +301,29 @@ document.addEventListener('DOMContentLoaded', function () {
     display: flex;
     gap: 10px;
     justify-content: center; 
+}
+
+.sort-options {
+    display: flex;
+    gap: 10px;
+}
+
+.sort-options a {
+    height: 20px;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+}
+
+.sort-option-active {
+    background-color: #007bff;
+    color: white !important;
+    font-weight: 600; 
 }
 
 

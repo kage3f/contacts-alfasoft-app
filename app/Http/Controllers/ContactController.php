@@ -13,18 +13,21 @@ class ContactController extends Controller
     public function index(Request $request)
     {
         $searchTerm = $request->query('search');
+        $orderBy = $request->query('order_by', 'created_at'); 
+        $sort = $request->query('sort', 'desc');
+    
+        $query = Contact::query();
     
         if ($searchTerm) {
-            $contacts = Contact::where('name', 'LIKE', "%{$searchTerm}%")
-                                ->orWhere('email', 'LIKE', "%{$searchTerm}%")
-                                ->paginate(10);
-        } else {
-            $contacts = Contact::paginate(10);
+            $query->where('name', 'LIKE', "%{$searchTerm}%")
+                  ->orWhere('email', 'LIKE', "%{$searchTerm}%");
         }
+    
+        $contacts = $query->orderBy($orderBy, $sort)->paginate(10);
     
         return view('contacts.index', compact('contacts'));
     }
-     
+    
 
     /**
      * Show the form for creating a new resource.
